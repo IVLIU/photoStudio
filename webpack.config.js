@@ -1,7 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin')
+const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
+const webpack = require('webpack');
 const path = require('path');
 const fs = require('fs');
 const { entries } = require('./config/entry');
@@ -37,6 +38,22 @@ module.exports = {
                 }
             },
             {
+                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+                use: ['file-loader']
+            },
+            {
+                test: /\.(woff|woff2)$/,
+                use: "url?prefix=font/&limit=5000"
+            },
+            {
+                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+                use: "url?limit=10000&mimetype=application/octet-stream"
+            },
+            {
+                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                use: "url?limit=10000&mimetype=image/svg+xml"
+            },
+            {
                 test: /\.js$/,
                 use: {
                     loader: 'babel-loader',
@@ -52,6 +69,11 @@ module.exports = {
         }),
         new CleanWebpackPlugin([path.join(__dirname, 'dist')]),
         new UglifyjsWebpackPlugin(),
+        new webpack.ProvidePlugin({
+            "$": "jquery",
+            "jQuery": "jquery",
+            "window.jQuery": "jquery"
+        }),
         ...templates()
     ],
     // devServer: {

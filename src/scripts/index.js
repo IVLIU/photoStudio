@@ -1,7 +1,3 @@
-import $ from 'jquery';
-
-$(() => {
-    $('body').append(`
-        <h1>Hello World</h1>
-    `)
-})
+// require('bootstrap/dist/css/bootstrap.min.css')
+// require('bootstrap/dist/js/bootstrap.min.js')
+$("body").append("<h1>hello world</h1>")
