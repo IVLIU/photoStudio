@@ -1,5 +1,7 @@
 # photoStudio
 
+#组长应该先fork到自己的仓库，并且可以考虑star，并且建立自己的分支，手把手交给组员怎么使用，不要推给我的仓库，应该是推不到的。
+
 1.本地克隆之后，需要先执行‘yarn’或者‘yarn install’，注意不要使用npm，不保证不出现错误。
 
 2.‘yarn run build’或者‘npm run build’打包文件。
