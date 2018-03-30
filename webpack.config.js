@@ -4,33 +4,18 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin')
 const path = require('path');
 const fs = require('fs');
-const { entriesJs, entriesCss } = require('./config/entry');
+const { entries } = require('./config/entry');
 const { templates } = require('./config/template');
-
-function getIndexPage() {
-    let filename = '';
-    let files = [];
-    try {
-        files = fs.readdirSync('./dist');
-        files.forEach(file => {
-            if(~file.indexOf('index')) {
-                filename = file;
-            }
-        })
-    } catch(e) {
-        return 'index.html'
-    }
-    return filename;
-}
+//const { getIndexPage } = require('./config/getIndex');
 
 module.exports = {
     entry: {
-        ...entriesJs(), ...entriesCss()
+        ...entries()
     },
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'scripts/[name].[hash].js',
-        publicPath: '/'
+        publicPath: './'
     },
     module: {
         rules: [
@@ -69,14 +54,14 @@ module.exports = {
         new UglifyjsWebpackPlugin(),
         ...templates()
     ],
-    devServer: {
-        contentBase: path.join(__dirname, "dist"),
-        port: 3000,
-        host: 'localhost',
-        overlay: true,
-        compress: true,
-        hot: true,
-        inline: true,
-        openPage: getIndexPage()
-    },
+    // devServer: {
+    //     contentBase: path.join(__dirname, "dist"),
+    //     port: 3000,
+    //     host: 'localhost',
+    //     overlay: true,
+    //     compress: true,
+    //     hot: true,
+    //     inline: true,
+    //     openPage: getIndexPage()
+    // },
 }
