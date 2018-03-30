@@ -11,10 +11,6 @@ const PORT = 3000;
 
 app.use(staticServer(path.join(__dirname, '/dist')));
 
-router.get('/', async ctx => {
-    
-})
-
 app
     .use(router.routes())
     .use(router.allowedMethods());
