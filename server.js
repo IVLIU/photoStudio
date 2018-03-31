@@ -17,10 +17,10 @@ app.use(static(path.resolve(__dirname, DIST)));
 
 routes(router);
 
-// router.get('/', async ctx => {
-//     ctx.type = 'html';
-//     ctx.body = fs.createReadStream('./dist/index.360af85ff48971d77633.html');
-// })
+router.get('/*', async ctx => {
+    ctx.type = 'html';
+    ctx.body = fs.createReadStream('./error.html');
+})
 
 app.use(router.routes()).use(router.allowedMethods());
 

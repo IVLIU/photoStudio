@@ -7,6 +7,12 @@ function routes(router) {
             ctx.type = 'html';
             ctx.body = fs.createReadStream(`./dist/${v}`);
         })
+        if(i === 'index') {
+            router.get('/', async ctx => {
+                ctx.type = 'html';
+                ctx.body = fs.createReadStream(`./dist/${v}`);
+            })
+        }
     }
 }
 
